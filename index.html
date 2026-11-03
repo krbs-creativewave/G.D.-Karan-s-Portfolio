@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
   <!-- Google Fonts: Space Grotesk & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -53,13 +56,16 @@
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: transparent;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #8884;
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #8888;
     }
@@ -67,25 +73,30 @@
     /* Grid Pattern */
     .bg-grid-pattern {
       background-size: 32px 32px;
-      background-image: 
+      background-image:
         linear-gradient(to right, rgba(120, 119, 198, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(120, 119, 198, 0.05) 1px, transparent 1px);
     }
   </style>
 </head>
-<body class="bg-[#F8F9FA] dark:bg-[#090A0F] text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans selection:bg-brand-accent selection:text-white bg-grid-pattern antialiased">
+
+<body
+  class="bg-[#F8F9FA] dark:bg-[#090A0F] text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans selection:bg-brand-accent selection:text-white bg-grid-pattern antialiased">
 
   <!-- ================= HEADER / NAVBAR ================= -->
-  <header class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-white/80 dark:bg-[#090A0F]/85 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
+  <header
+    class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-white/80 dark:bg-[#090A0F]/85 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      
+
       <!-- Brand Logo -->
       <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-ps via-brand-accent to-brand-ai text-white flex items-center justify-center font-display font-extrabold text-xl shadow-md group-hover:scale-105 transition-all">
+        <div
+          class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-ps via-brand-accent to-brand-ai text-white flex items-center justify-center font-display font-extrabold text-xl shadow-md group-hover:scale-105 transition-all">
           KR
         </div>
         <div class="flex flex-col">
-          <span class="font-display font-bold text-lg tracking-tight leading-none group-hover:text-brand-accent transition-colors">
+          <span
+            class="font-display font-bold text-lg tracking-tight leading-none group-hover:text-brand-accent transition-colors">
             KARAN RAI<span class="text-brand-accent">.</span>
           </span>
           <span class="text-[10px] text-zinc-500 font-mono tracking-wider">GRAPHIC DESIGNER &amp; VISUAL ARTIST</span>
@@ -94,28 +105,37 @@
 
       <!-- Desktop Navigation Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="#projects" class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Projects</a>
-        <a href="#about" class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">About</a>
-        <a href="#skills" class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Software Stack</a>
-        <a href="#services" class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Services</a>
-        <a href="#contact" class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Contact</a>
+        <a href="#projects"
+          class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Projects</a>
+        <a href="#about"
+          class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">About</a>
+        <a href="#skills"
+          class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Software
+          Stack</a>
+        <a href="#services"
+          class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Services</a>
+        <a href="#contact"
+          class="text-zinc-600 hover:text-brand-accent dark:text-zinc-400 dark:hover:text-brand-accent transition-colors">Contact</a>
       </nav>
 
       <!-- Action items: Status & Mode toggle -->
       <div class="flex items-center gap-3">
-        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+        <div
+          class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           Available for Work
         </div>
 
         <!-- Light/Dark Mode Switch -->
-        <button id="themeToggleBtn" aria-label="Toggle theme" class="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/90 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition">
+        <button id="themeToggleBtn" aria-label="Toggle theme"
+          class="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800/90 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition">
           <i data-lucide="moon" id="moonIcon" class="w-4 h-4 hidden"></i>
           <i data-lucide="sun" id="sunIcon" class="w-4 h-4 hidden text-amber-400"></i>
         </button>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobileMenuBtn" aria-label="Toggle menu" class="md:hidden p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
+        <button id="mobileMenuBtn" aria-label="Toggle menu"
+          class="md:hidden p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
           <i data-lucide="menu" id="menuOpenIcon" class="w-5 h-5"></i>
           <i data-lucide="x" id="menuCloseIcon" class="w-5 h-5 hidden"></i>
         </button>
@@ -123,12 +143,16 @@
     </div>
 
     <!-- Mobile Dropdown Navigation -->
-    <div id="mobileMenu" class="hidden md:hidden px-6 pt-3 pb-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#090A0F]/95 backdrop-blur-md">
+    <div id="mobileMenu"
+      class="hidden md:hidden px-6 pt-3 pb-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#090A0F]/95 backdrop-blur-md">
       <div class="flex flex-col gap-3 text-base font-medium">
-        <a href="#projects" class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Projects</a>
+        <a href="#projects"
+          class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Projects</a>
         <a href="#about" class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">About Me</a>
-        <a href="#skills" class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Software &amp; Skills</a>
-        <a href="#services" class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Services</a>
+        <a href="#skills" class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Software
+          &amp; Skills</a>
+        <a href="#services"
+          class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Services</a>
         <a href="#contact" class="mobile-link py-2 text-zinc-700 dark:text-zinc-300 hover:text-brand-accent">Contact</a>
       </div>
     </div>
@@ -138,47 +162,61 @@
     <!-- ================= HERO SECTION ================= -->
     <section id="hero" class="relative min-h-[92vh] flex items-center justify-center px-6 py-16 overflow-hidden">
       <!-- Glow Gradients -->
-      <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-brand-ps/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-ai/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+      <div
+        class="absolute top-1/4 left-1/3 w-96 h-96 bg-brand-ps/15 rounded-full blur-[140px] pointer-events-none -z-10">
+      </div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-ai/15 rounded-full blur-[140px] pointer-events-none -z-10">
+      </div>
 
       <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         <!-- Left: Introduction -->
         <div class="lg:col-span-7 flex flex-col items-start space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold">
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold">
             <span class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-ping"></span>
             Graphic Designer &amp; Visual Artist
           </div>
 
           <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.08]">
-            Hi, I’m <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-ps via-brand-accent to-brand-ai">Karan Rai</span>.
+            Hi, I’m <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-brand-ps via-brand-accent to-brand-ai">Karan
+              Rai</span>.
             <br>Crafting bold visual identities.
           </h1>
 
           <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-xl leading-relaxed">
-            Specializing in high-impact photo manipulation, vector artwork, brand identity, and poster composition powered by <span class="font-semibold text-zinc-900 dark:text-white">Adobe Photoshop</span> and <span class="font-semibold text-zinc-900 dark:text-white">Adobe Illustrator</span>.
+            Specializing in high-impact photo manipulation, vector artwork, brand identity, and poster composition
+            powered by <span class="font-semibold text-zinc-900 dark:text-white">Adobe Photoshop</span> and <span
+              class="font-semibold text-zinc-900 dark:text-white">Adobe Illustrator</span>.
           </p>
 
           <!-- Core Software Badge Highlights -->
           <div class="flex flex-wrap items-center gap-2.5 pt-1">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/25 text-blue-600 dark:text-blue-400 text-xs font-semibold">
+            <span
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/25 text-blue-600 dark:text-blue-400 text-xs font-semibold">
               <i data-lucide="layers" class="w-3.5 h-3.5"></i> Adobe Photoshop
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-semibold">
+            <span
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-semibold">
               <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i> Adobe Illustrator
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-200/60 dark:bg-zinc-800/80 border border-zinc-300 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 text-xs">
+            <span
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-200/60 dark:bg-zinc-800/80 border border-zinc-300 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 text-xs">
               <i data-lucide="layout" class="w-3.5 h-3.5"></i> Canva
             </span>
           </div>
 
           <!-- Buttons -->
           <div class="flex flex-wrap items-center gap-4 pt-3">
-            <a href="#projects" class="px-7 py-3.5 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-semibold hover:bg-brand-accent dark:hover:bg-brand-accent dark:hover:text-white transition-all transform hover:-translate-y-0.5 shadow-lg flex items-center gap-2">
+            <a href="#projects"
+              class="px-7 py-3.5 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-semibold hover:bg-brand-accent dark:hover:bg-brand-accent dark:hover:text-white transition-all transform hover:-translate-y-0.5 shadow-lg flex items-center gap-2">
               Explore Projects
               <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
             </a>
-            <a href="#contact" class="px-7 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 hover:bg-brand-accent hover:text-white dark:hover:bg-brand-accent dark:hover:text-white transition-all font-semibold flex items-center gap-2">
+            <a href="#contact"
+              class="px-7 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 hover:bg-brand-accent hover:text-white dark:hover:bg-brand-accent dark:hover:text-white transition-all font-semibold flex items-center gap-2">
               <i data-lucide="mail" class="w-4 h-4"></i>
               Hire Me
             </a>
@@ -203,27 +241,37 @@
 
         <!-- Right: Dynamic Portrait Card -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-80 sm:w-96 rounded-3xl p-4 bg-white/70 dark:bg-zinc-800/50 backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 shadow-2xl animate-float-slow">
-            
+          <div
+            class="relative w-80 sm:w-96 rounded-3xl p-4 bg-white/70 dark:bg-zinc-800/50 backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 shadow-2xl animate-float-slow">
+
             <!-- Image Card Wrapper -->
             <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-900 group">
-              <img id="heroImage" data-filename="Cinematic Portrait with Purple Rim Light.png" src="Cinematic Portrait with Purple Rim Light.png" alt="Karan Rai - Graphic Designer" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" onerror="handleImageFallback(this)">
-              
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+              <img id="heroImage" data-filename="Cinematic Portrait with Purple Rim Light.png"
+                src="Cinematic Portrait with Purple Rim Light.png" alt="Karan Rai - Graphic Designer"
+                class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
+                onerror="handleImageFallback(this)">
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none">
+              </div>
 
               <!-- Top floating status -->
-              <div class="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/90">
-                <span class="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">Karan Rai</span>
+              <div
+                class="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/90">
+                <span class="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">Karan
+                  Rai</span>
                 <span class="px-3 py-1 rounded-full bg-brand-accent/80 backdrop-blur-md">Visual Designer</span>
               </div>
 
               <!-- Image Swapper pill -->
-              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-2.5">
+              <div
+                class="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-2.5">
                 <div class="text-white text-xs">
                   <p class="font-bold">Portrait View</p>
                   <p class="text-[10px] text-zinc-400 font-mono">Photo <span id="photoNumDisplay">1</span> of 2</p>
                 </div>
-                <button id="togglePhotoBtn" class="px-3 py-1.5 rounded-lg bg-white text-zinc-900 text-xs font-semibold hover:bg-brand-accent hover:text-white transition flex items-center gap-1.5">
+                <button id="togglePhotoBtn"
+                  class="px-3 py-1.5 rounded-lg bg-white text-zinc-900 text-xs font-semibold hover:bg-brand-accent hover:text-white transition flex items-center gap-1.5">
                   <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
                   <span>Switch Photo</span>
                 </button>
@@ -243,22 +291,32 @@
 
     <!-- ================= PROJECTS SECTION ================= -->
     <section id="projects" class="px-6 py-24 max-w-7xl mx-auto">
-      
+
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span class="text-xs font-mono uppercase text-brand-accent tracking-widest font-semibold">Portfolio Gallery</span>
+          <span class="text-xs font-mono uppercase text-brand-accent tracking-widest font-semibold">Portfolio
+            Gallery</span>
           <h2 class="text-3xl sm:text-5xl font-display font-bold mt-2">Selected Works</h2>
           <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-            Complete collection of commercial banners, YouTube thumbnails, commemorative posters &amp; photo manipulations.
+            Complete collection of commercial banners, YouTube thumbnails, commemorative posters &amp; photo
+            manipulations.
           </p>
         </div>
 
         <!-- Filter tabs -->
         <div id="filterContainer" class="flex flex-wrap gap-2 text-xs sm:text-sm">
-          <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl border border-zinc-900 bg-zinc-900 text-white dark:border-white dark:bg-white dark:text-zinc-900 transition font-medium">All Projects</button>
-          <button data-filter="thumbnails" class="filter-btn px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-brand-ps transition font-medium">YouTube Thumbnails</button>
-          <button data-filter="banners" class="filter-btn px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-brand-ai transition font-medium">Commercial &amp; Banners</button>
-          <button data-filter="posters" class="filter-btn px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-brand-accent transition font-medium">Posters &amp; Key Visuals</button>
+          <button data-filter="all"
+            class="filter-btn active px-4 py-2 rounded-xl border border-zinc-900 bg-zinc-900 text-white dark:border-white dark:bg-white dark:text-zinc-900 transition font-medium">All
+            Projects</button>
+          <button data-filter="thumbnails"
+            class="filter-btn px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-brand-ps transition font-medium">YouTube
+            Thumbnails</button>
+          <button data-filter="banners"
+            class="filter-btn px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-brand-ai transition font-medium">Commercial
+            &amp; Banners</button>
+          <button data-filter="posters"
+            class="filter-btn px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-brand-accent transition font-medium">Posters
+            &amp; Key Visuals</button>
         </div>
       </div>
 
@@ -269,27 +327,34 @@
     </section>
 
     <!-- ================= ABOUT ME (KARAN RAI) ================= -->
-    <section id="about" class="px-6 py-24 bg-zinc-100/70 dark:bg-zinc-900/40 border-y border-zinc-200 dark:border-zinc-800">
+    <section id="about"
+      class="px-6 py-24 bg-zinc-100/70 dark:bg-zinc-900/40 border-y border-zinc-200 dark:border-zinc-800">
       <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         <!-- Left: Portrait Photo 2 Showcase -->
         <div class="lg:col-span-5 relative">
-          <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-200 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-xl group">
-            <img id="aboutImage" data-filename="ChatGPT Image Oct 7, 2026, 10_41_16 PM.png" src="ChatGPT Image Oct 7, 2026, 10_41_16 PM.png" alt="Karan Rai - Graphic Designer" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" onerror="handleImageFallback(this)">
-            
+          <div
+            class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-200 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-xl group">
+            <img id="aboutImage" data-filename="Cinematic Portrait with Purple Rim Light.png"
+              src="Cinematic Portrait with Purple Rim Light.png" alt="Karan Rai - Graphic Designer"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+              onerror="handleImageFallback(this)">
+
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
             <div class="absolute bottom-6 left-6 right-6 text-white space-y-1">
               <span class="text-xs uppercase font-mono tracking-widest text-brand-ps">Visual Designer</span>
               <h3 class="font-display text-2xl font-bold">Karan Rai</h3>
-              <p class="text-xs text-zinc-300">Focused on impactful photo composites, precision vector art, and modern digital aesthetics.</p>
+              <p class="text-xs text-zinc-300">Focused on impactful photo composites, precision vector art, and modern
+                digital aesthetics.</p>
             </div>
           </div>
         </div>
 
         <!-- Right: Story & Details -->
         <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-semibold">
             About The Designer
           </div>
 
@@ -298,11 +363,15 @@
           </h2>
 
           <p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            I am Karan Rai, a graphic designer driven by creating visuals that demand attention. My workflow is anchored primarily in <strong class="text-zinc-900 dark:text-white">Adobe Photoshop</strong> and <strong class="text-zinc-900 dark:text-white">Adobe Illustrator</strong>, where I develop detailed photo manipulations, custom vector branding, typography lockups, and digital promotional assets.
+            I am Karan Rai, a graphic designer driven by creating visuals that demand attention. My workflow is anchored
+            primarily in <strong class="text-zinc-900 dark:text-white">Adobe Photoshop</strong> and <strong
+              class="text-zinc-900 dark:text-white">Adobe Illustrator</strong>, where I develop detailed photo
+            manipulations, custom vector branding, typography lockups, and digital promotional assets.
           </p>
 
           <p class="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Whether constructing a composite scene with dynamic atmospheric lighting or shaping a scalable logo from vector curves, I prioritize crisp execution, clean color grading, and strong design fundamentals.
+            Whether constructing a composite scene with dynamic atmospheric lighting or shaping a scalable logo from
+            vector curves, I prioritize crisp execution, clean color grading, and strong design fundamentals.
           </p>
 
           <!-- 3 Highlights Cards -->
@@ -333,7 +402,8 @@
     <!-- ================= SOFTWARE STACK ================= -->
     <section id="skills" class="px-6 py-24 max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs font-mono uppercase text-brand-accent tracking-widest font-semibold">Software Expertise</span>
+        <span class="text-xs font-mono uppercase text-brand-accent tracking-widest font-semibold">Software
+          Expertise</span>
         <h2 class="text-3xl sm:text-5xl font-display font-bold mt-2">Core Tools &amp; Craft</h2>
         <p class="text-zinc-600 dark:text-zinc-400 mt-3 text-sm">
           Built on professional industry software with Photoshop and Illustrator as the primary design drivers.
@@ -342,21 +412,25 @@
 
       <!-- Primary Software Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-        
+
         <!-- Photoshop Card -->
-        <div class="p-8 rounded-3xl bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/80 hover:border-brand-ps transition-all group shadow-sm hover:shadow-xl">
+        <div
+          class="p-8 rounded-3xl bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/80 hover:border-brand-ps transition-all group shadow-sm hover:shadow-xl">
           <div class="flex items-center justify-between mb-4">
-            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-brand-ps flex items-center justify-center font-display font-bold text-2xl group-hover:scale-105 transition">
+            <div
+              class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-brand-ps flex items-center justify-center font-display font-bold text-2xl group-hover:scale-105 transition">
               Ps
             </div>
-            <span class="text-xs font-mono px-3 py-1 rounded-full bg-blue-500/10 text-brand-ps font-semibold">Primary Suite</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-full bg-blue-500/10 text-brand-ps font-semibold">Primary
+              Suite</span>
           </div>
 
           <h3 class="font-display font-bold text-2xl mt-2">Adobe Photoshop</h3>
           <p class="text-xs sm:text-sm text-zinc-500 mt-2 mb-6 leading-relaxed">
-            Advanced photo manipulation, matte painting, color grading, frequency separation retouching, and cinematic poster designs.
+            Advanced photo manipulation, matte painting, color grading, frequency separation retouching, and cinematic
+            poster designs.
           </p>
-          
+
           <div class="space-y-2">
             <div class="flex justify-between text-xs font-semibold">
               <span>Mastery &amp; Application</span>
@@ -369,19 +443,22 @@
         </div>
 
         <!-- Illustrator Card -->
-        <div class="p-8 rounded-3xl bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/80 hover:border-brand-ai transition-all group shadow-sm hover:shadow-xl">
+        <div
+          class="p-8 rounded-3xl bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/80 hover:border-brand-ai transition-all group shadow-sm hover:shadow-xl">
           <div class="flex items-center justify-between mb-4">
-            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-brand-ai flex items-center justify-center font-display font-bold text-2xl group-hover:scale-105 transition">
+            <div
+              class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-brand-ai flex items-center justify-center font-display font-bold text-2xl group-hover:scale-105 transition">
               Ai
             </div>
-            <span class="text-xs font-mono px-3 py-1 rounded-full bg-amber-500/10 text-brand-ai font-semibold">Primary Suite</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-full bg-amber-500/10 text-brand-ai font-semibold">Primary
+              Suite</span>
           </div>
 
           <h3 class="font-display font-bold text-2xl mt-2">Adobe Illustrator</h3>
           <p class="text-xs sm:text-sm text-zinc-500 mt-2 mb-6 leading-relaxed">
             Vector brand identity, custom logo emblems, iconography, geometric badges, and scalable visual assets.
           </p>
-          
+
           <div class="space-y-2">
             <div class="flex justify-between text-xs font-semibold">
               <span>Mastery &amp; Application</span>
@@ -396,14 +473,17 @@
       </div>
 
       <!-- Secondary Utility Note -->
-      <div class="p-5 rounded-2xl bg-white dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div
+        class="p-5 rounded-2xl bg-white dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 text-xs font-bold font-mono">
+          <div
+            class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 text-xs font-bold font-mono">
             Cv
           </div>
           <div>
             <h5 class="text-xs font-bold text-zinc-800 dark:text-zinc-200">Secondary Tool: Canva</h5>
-            <p class="text-[11px] text-zinc-500">Utilized occasionally for quick asset prototyping or client template deliveries.</p>
+            <p class="text-[11px] text-zinc-500">Utilized occasionally for quick asset prototyping or client template
+              deliveries.</p>
           </div>
         </div>
         <div class="flex flex-wrap gap-2 text-[11px]">
@@ -416,7 +496,8 @@
     </section>
 
     <!-- ================= SERVICES ================= -->
-    <section id="services" class="px-6 py-24 bg-zinc-100/70 dark:bg-zinc-900/40 border-t border-zinc-200 dark:border-zinc-800">
+    <section id="services"
+      class="px-6 py-24 bg-zinc-100/70 dark:bg-zinc-900/40 border-t border-zinc-200 dark:border-zinc-800">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
@@ -430,37 +511,45 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- S1 -->
-          <div class="p-6 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-brand-ps transition flex flex-col justify-between">
+          <div
+            class="p-6 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-brand-ps transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-brand-ps flex items-center justify-center mb-5">
                 <i data-lucide="wand-2" class="w-6 h-6"></i>
               </div>
               <h3 class="font-display font-bold text-lg mb-2">Photo Manipulation</h3>
               <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Seamless blending, complex background changes, cinematic atmospheric lighting, and high-end photo retouching.
+                Seamless blending, complex background changes, cinematic atmospheric lighting, and high-end photo
+                retouching.
               </p>
             </div>
-            <p class="text-[11px] font-mono text-brand-ps mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700">Adobe Photoshop</p>
+            <p class="text-[11px] font-mono text-brand-ps mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700">Adobe
+              Photoshop</p>
           </div>
 
           <!-- S2 -->
-          <div class="p-6 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-brand-ai transition flex flex-col justify-between">
+          <div
+            class="p-6 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-brand-ai transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-brand-ai flex items-center justify-center mb-5">
                 <i data-lucide="feather" class="w-6 h-6"></i>
               </div>
               <h3 class="font-display font-bold text-lg mb-2">Vector Identity &amp; Logos</h3>
               <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Distinctive vector marks, typography lockups, emblems, and graphic assets tailored for digital and print execution.
+                Distinctive vector marks, typography lockups, emblems, and graphic assets tailored for digital and print
+                execution.
               </p>
             </div>
-            <p class="text-[11px] font-mono text-brand-ai mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700">Adobe Illustrator</p>
+            <p class="text-[11px] font-mono text-brand-ai mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700">Adobe
+              Illustrator</p>
           </div>
 
           <!-- S3 -->
-          <div class="p-6 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-brand-accent transition flex flex-col justify-between">
+          <div
+            class="p-6 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-brand-accent transition flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-brand-accent flex items-center justify-center mb-5">
+              <div
+                class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-brand-accent flex items-center justify-center mb-5">
                 <i data-lucide="sparkles" class="w-6 h-6"></i>
               </div>
               <h3 class="font-display font-bold text-lg mb-2">Posters &amp; Key Visuals</h3>
@@ -468,7 +557,8 @@
                 Standout promotional banners, event posters, album covers, and creative promotional campaign assets.
               </p>
             </div>
-            <p class="text-[11px] font-mono text-brand-accent mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700">PS + Illustrator</p>
+            <p class="text-[11px] font-mono text-brand-accent mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700">
+              PS + Illustrator</p>
           </div>
         </div>
       </div>
@@ -477,23 +567,27 @@
     <!-- ================= CONTACT SECTION ================= -->
     <section id="contact" class="px-6 py-24 max-w-6xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
+
         <!-- Left Contact Info -->
         <div class="lg:col-span-5 space-y-6">
           <span class="text-xs font-mono uppercase text-brand-accent tracking-widest font-semibold">Get In Touch</span>
           <h2 class="text-3xl sm:text-5xl font-display font-bold">Let’s collaborate.</h2>
-          
+
           <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Have a project in mind, need bespoke vector branding, or desire cinematic photo manipulation? Send a message and let's bring it to life.
+            Have a project in mind, need bespoke vector branding, or desire cinematic photo manipulation? Send a message
+            and let's bring it to life.
           </p>
 
           <!-- Email Copy Chip -->
-          <div class="p-4 rounded-2xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-between shadow-sm">
+          <div
+            class="p-4 rounded-2xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-between shadow-sm">
             <div>
               <p class="text-[11px] text-zinc-400">Direct Contact</p>
-              <p id="emailText" class="font-mono text-sm font-semibold text-zinc-800 dark:text-zinc-200">krb.creativewave@gmail.com</p>
+              <p id="emailText" class="font-mono text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                krb.creativewave@gmail.com</p>
             </div>
-            <button id="copyEmailBtn" class="px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-700 hover:bg-brand-accent hover:text-white dark:hover:bg-brand-accent transition text-xs font-medium flex items-center gap-1.5">
+            <button id="copyEmailBtn"
+              class="px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-700 hover:bg-brand-accent hover:text-white dark:hover:bg-brand-accent transition text-xs font-medium flex items-center gap-1.5">
               <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               <span id="copyBtnText">Copy</span>
             </button>
@@ -507,21 +601,26 @@
 
         <!-- Right: Contact Form -->
         <div class="lg:col-span-7">
-          <form id="contactForm" action="https://formspree.io/f/xyeenpqk" method="POST" class="p-8 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-xl space-y-5">
+          <form id="contactForm" action="https://formspree.io/f/xyeenpqk" method="POST"
+            class="p-8 rounded-3xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-xl space-y-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label for="userName" class="block text-xs font-semibold uppercase tracking-wider mb-2">Name *</label>
-                <input type="text" id="userName" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm">
+                <input type="text" id="userName" name="name" required placeholder="Your Name"
+                  class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm">
               </div>
               <div>
                 <label for="userEmail" class="block text-xs font-semibold uppercase tracking-wider mb-2">Email *</label>
-                <input type="email" id="userEmail" name="email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm">
+                <input type="email" id="userEmail" name="email" required placeholder="name@example.com"
+                  class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm">
               </div>
             </div>
 
             <div>
-              <label for="softwareNeed" class="block text-xs font-semibold uppercase tracking-wider mb-2">Design Scope</label>
-              <select id="softwareNeed" name="service" class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm text-zinc-700 dark:text-zinc-300">
+              <label for="softwareNeed" class="block text-xs font-semibold uppercase tracking-wider mb-2">Design
+                Scope</label>
+              <select id="softwareNeed" name="service"
+                class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm text-zinc-700 dark:text-zinc-300">
                 <option value="Photoshop Manipulation">Photoshop (PS) — Photo Manipulation &amp; Compositing</option>
                 <option value="Illustrator Vector Logo">Illustrator (Ai) — Vector Logo &amp; Brand Identity</option>
                 <option value="YouTube Thumbnail Design">YouTube Thumbnail Design</option>
@@ -532,17 +631,22 @@
             </div>
 
             <div>
-              <label for="userMsg" class="block text-xs font-semibold uppercase tracking-wider mb-2">Project Brief *</label>
-              <textarea id="userMsg" name="message" rows="4" required placeholder="Describe your creative requirements..." class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm"></textarea>
+              <label for="userMsg" class="block text-xs font-semibold uppercase tracking-wider mb-2">Project Brief
+                *</label>
+              <textarea id="userMsg" name="message" rows="4" required
+                placeholder="Describe your creative requirements..."
+                class="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 focus:outline-none focus:border-brand-accent text-sm"></textarea>
             </div>
 
-            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-brand-accent text-white font-semibold hover:bg-brand-accentDark transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
+            <button type="submit" id="submitBtn"
+              class="w-full py-4 rounded-xl bg-brand-accent text-white font-semibold hover:bg-brand-accentDark transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
               <span>Send Inquiry</span>
               <i data-lucide="send" class="w-4 h-4"></i>
             </button>
 
             <!-- Success Note -->
-            <div id="formSuccessMessage" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm text-center">
+            <div id="formSuccessMessage"
+              class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm text-center">
               Thanks for reaching out! Your inquiry has been sent to Karan Rai. You will receive a response shortly.
             </div>
           </form>
@@ -564,9 +668,12 @@
   </footer>
 
   <!-- ================= PROJECT PREVIEW MODAL ================= -->
-  <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-    <div id="modalBox" class="bg-white dark:bg-zinc-900 w-full max-w-3xl max-h-[90vh] rounded-3xl overflow-y-auto border border-zinc-200 dark:border-zinc-700 shadow-2xl transform scale-95 transition-transform duration-300 p-6 sm:p-8 relative">
-      <button id="modalCloseBtn" aria-label="Close modal" class="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-brand-accent hover:text-white transition">
+  <div id="projectModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="modalBox"
+      class="bg-white dark:bg-zinc-900 w-full max-w-3xl max-h-[90vh] rounded-3xl overflow-y-auto border border-zinc-200 dark:border-zinc-700 shadow-2xl transform scale-95 transition-transform duration-300 p-6 sm:p-8 relative">
+      <button id="modalCloseBtn" aria-label="Close modal"
+        class="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-brand-accent hover:text-white transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
@@ -786,6 +893,17 @@
         description: "Clean typography-driven automotive specification poster with typographic depth wall and shadow ground casting.",
         image: "MARUTI-SUZUKI--DZIRE-POSTER-Recovered-Recovered.jpg",
         fullDetails: "Crafted for automobile advertising with perspective background typographic walls, contact shadows under vehicle tires, and clear feature callouts."
+      },
+      {
+        id: "p-airpods-banner",
+        title: "Apple AirPods — 'Small earbuds. Big moments.' Ad Banner",
+        category: "banners",
+        categoryLabel: "Commercial & Banners",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+        description: "Minimalist Apple product vertical ad banner featuring 3D ambient shadow casting, warm gradient background curves, and clean feature icon callouts.",
+        image: "Earpods-ad-banner-Recovered.jpg",
+        fullDetails: "Crafted in Adobe Photoshop focusing on precision product isolation, glossy case reflections, high-contrast typography hierarchy ('Small earbuds. Big moments.'), and custom feature vector icons."
       }
     ];
 
@@ -798,8 +916,8 @@
 
     function renderProjects(filter = 'all') {
       projectsGrid.innerHTML = '';
-      const filtered = filter === 'all' 
-        ? allProjects 
+      const filtered = filter === 'all'
+        ? allProjects
         : allProjects.filter(p => p.category === filter);
 
       filtered.forEach(p => {
@@ -1032,4 +1150,5 @@
     });
   </script>
 </body>
+
 </html>
