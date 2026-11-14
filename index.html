@@ -16,6 +16,9 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- PDF.js for Rendering Brand Identity PDF Pages as Interactive Carousel Slides -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -55,6 +58,7 @@
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
+      height: 6px;
     }
 
     ::-webkit-scrollbar-track {
@@ -76,6 +80,11 @@
       background-image:
         linear-gradient(to right, rgba(120, 119, 198, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(120, 119, 198, 0.05) 1px, transparent 1px);
+    }
+
+    /* Smooth Carousel Track */
+    .carousel-track {
+      transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
     }
   </style>
 </head>
@@ -324,6 +333,86 @@
       <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Rendered dynamically through JavaScript -->
       </div>
+
+      <!-- ================= 12 LOGOS BRAND IDENTITY PDF CAROUSEL ================= -->
+      <div class="mt-24 pt-16 border-t border-zinc-200 dark:border-zinc-800">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <span class="text-xs font-mono uppercase text-brand-ai tracking-widest font-semibold">Adobe Illustrator •
+              Brand Identity Systems</span>
+            <h3 class="text-2xl sm:text-4xl font-display font-bold mt-2">12 Logo &amp; Brand Identity Presentations</h3>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+              Interactive 5-page brand identity systems covering logo construction, color palette, typography, clear
+              space &amp; real-world applications.
+            </p>
+          </div>
+
+          <!-- Active Brand & Slide Counter -->
+          <div class="flex items-center gap-3 self-start md:self-end">
+            <span id="activeBrandBadge"
+              class="px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/25 text-brand-ai font-mono text-xs font-semibold">
+              Logo 01 / 12
+            </span>
+            <span id="pdfPageIndicator"
+              class="px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 font-mono text-xs font-semibold">
+              Slide 01 / 05
+            </span>
+          </div>
+        </div>
+
+        <!-- 12 Brand Identity Carousel Selector Strip -->
+        <div id="brandDeckStrip"
+          class="flex items-center gap-3 overflow-x-auto pb-4 mb-6 snap-x snap-mandatory scroll-smooth">
+          <!-- 12 Brand pills injected dynamically via JS -->
+        </div>
+
+        <!-- Main 5-Page Slide Carousel Frame -->
+        <div
+          class="relative rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden">
+
+          <!-- Loading Spinner -->
+          <div id="pdfLoadingState" class="py-24 px-6 flex flex-col items-center justify-center text-center space-y-3">
+            <div class="w-9 h-9 rounded-full border-4 border-brand-accent border-t-transparent animate-spin"></div>
+            <p class="font-display font-bold text-base">Loading Brand Identity Slides...</p>
+          </div>
+
+          <!-- Carousel Viewport -->
+          <div id="pdfCarouselViewport" class="hidden relative w-full overflow-hidden bg-zinc-950/5 dark:bg-black/40">
+            <div id="pdfCarouselTrack" class="carousel-track flex items-center">
+              <!-- 5 PDF Page Slides rendered here -->
+            </div>
+
+            <!-- Left / Right Slide Arrows -->
+            <button id="overlayPrevBtn" aria-label="Previous slide"
+              class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/65 hover:bg-brand-accent text-white backdrop-blur-md border border-white/15 flex items-center justify-center transition shadow-lg">
+              <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+            </button>
+            <button id="overlayNextBtn" aria-label="Next slide"
+              class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/65 hover:bg-brand-accent text-white backdrop-blur-md border border-white/15 flex items-center justify-center transition shadow-lg">
+              <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+            </button>
+          </div>
+
+          <!-- Slide Dots & Active Brand Info Footer -->
+          <div
+            class="px-6 py-4 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <span id="activeBrandTitle" class="font-display font-bold text-sm text-zinc-900 dark:text-white">
+                Bakers Kitchen — Artisan Loaf
+              </span>
+              <span id="activeBrandSub" class="text-xs text-zinc-500 font-mono hidden sm:inline">
+                • Restaurant &amp; Bakery
+              </span>
+            </div>
+
+            <div id="pdfDotsContainer" class="flex items-center gap-2">
+              <!-- 5 Slide Dots injected dynamically -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </section>
 
     <!-- ================= ABOUT ME (KARAN RAI) ================= -->
@@ -593,7 +682,29 @@
             </button>
           </div>
 
-          <div class="space-y-2 text-xs text-zinc-500">
+          <!-- Social Media Links -->
+          <div class="pt-2 space-y-3">
+            <p class="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">Connect on Social Media</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="https://www.linkedin.com/in/karan-rai-80037744a/" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition text-xs font-semibold shadow-sm">
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://www.instagram.com/krb.s_creativewave/?hl=en" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-pink-500 hover:text-pink-500 dark:hover:border-pink-400 dark:hover:text-pink-400 transition text-xs font-semibold shadow-sm">
+                <i data-lucide="instagram" class="w-4 h-4"></i>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.youtube.com/@KRB.s_CreativeWave" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-red-500 hover:text-red-500 dark:hover:border-red-400 dark:hover:text-red-400 transition text-xs font-semibold shadow-sm">
+                <i data-lucide="youtube" class="w-4 h-4"></i>
+                <span>YouTube</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs text-zinc-500 pt-2">
             <p>• Fast response within 24 hours</p>
             <p>• Delivering in high-res PNG, SVG, PDF, and source files</p>
           </div>
@@ -663,6 +774,22 @@
         <span class="font-display font-bold text-zinc-900 dark:text-white">KARAN RAI</span>
         <span>• Graphic Designer &amp; Visual Artist</span>
       </div>
+
+      <div class="flex items-center gap-5">
+        <a href="https://www.linkedin.com/in/karan-rai-80037744a/" target="_blank" rel="noopener noreferrer"
+          class="hover:text-brand-accent transition flex items-center gap-1.5">
+          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn
+        </a>
+        <a href="https://www.instagram.com/krb.s_creativewave/?hl=en" target="_blank" rel="noopener noreferrer"
+          class="hover:text-brand-accent transition flex items-center gap-1.5">
+          <i data-lucide="instagram" class="w-3.5 h-3.5"></i> Instagram
+        </a>
+        <a href="https://www.youtube.com/@KRB.s_CreativeWave" target="_blank" rel="noopener noreferrer"
+          class="hover:text-brand-accent transition flex items-center gap-1.5">
+          <i data-lucide="youtube" class="w-3.5 h-3.5"></i> YouTube
+        </a>
+      </div>
+
       <p>Adobe Photoshop • Adobe Illustrator</p>
     </div>
   </footer>
@@ -727,8 +854,109 @@
       heroImage.src = encodeURI(targetPhoto);
     });
 
-    // Complete Collection of Projects
+    // =========================================================================
+    // 1. COMPLETE COLLECTION OF PROJECTS (Requested Top Priority Order First)
+    // =========================================================================
     const allProjects = [
+      {
+        id: "p-logitech-mouse",
+        title: "Logitech G502 HERO — 'Precision Unleashed.' Gaming Ad",
+        category: "banners",
+        categoryLabel: "Commercial & Banners",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-sky-500/20 text-sky-400 border-sky-500/30",
+        description: "High-impact esports gaming peripheral poster featuring dynamic cyan speed trails, glowing RGB lighting, angled bold typography, and key spec callouts.",
+        image: "Logitech-Mouse-Poster.jpg",
+        fullDetails: "Crafted in Adobe Photoshop with glowing cyan rim highlights, motion-blurred speed streaks, dark reflective surface treatment, angled outer-glow typography ('PRECISION UNLEASHED.'), and feature highlights (HERO 25K Sensor, 11 Programmable Buttons, LIGHTSYNC RGB)."
+      },
+      {
+        id: "p-ps5-dualsense",
+        title: "Sony PlayStation 5 DualSense — Cosmic Red Ad Poster",
+        category: "banners",
+        categoryLabel: "Commercial & Banners",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-red-500/20 text-red-500 border-red-500/30",
+        description: "Striking crimson-toned promotional ad poster featuring the PS5 DualSense controller with bold typography and precision feature callouts.",
+        image: "PS-5_ad_poster.jpg",
+        fullDetails: "Created in Adobe Photoshop showcasing the Cosmic Red DualSense controller against dramatic studio lighting, sharp contact drop shadows, giant 'SONY' backdrop typography, and elegant feature lists (Adaptive Trigger, TouchPad, Motion Sensor, Matte Finish)."
+      },
+      {
+        id: "p-diwali-golden-portrait",
+        title: "Golden Diwali — 'Light and Strength' Festival Greeting",
+        category: "posters",
+        categoryLabel: "Posters & Key Visuals",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+        description: "Warm festive portrait composition with ambient golden bokeh, glowing traditional diya clay lamps, lantern lighting, and elegant cursive festive typography.",
+        image: "Golden Diwali Light and Strength.png",
+        fullDetails: "Crafted in Adobe Photoshop featuring precise lighting match between subject portrait and glowing earthen diyas, golden particle overlays, cinematic depth-of-field bokeh, and golden metallic typography."
+      },
+      {
+        id: "p-airpods-banner",
+        title: "Apple AirPods — 'Small earbuds. Big moments.' Ad Banner",
+        category: "banners",
+        categoryLabel: "Commercial & Banners",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+        description: "Minimalist Apple product vertical ad banner featuring 3D ambient shadow casting, warm gradient background curves, and clean feature icon callouts.",
+        image: "Earpods-ad-banner-Recovered.jpg",
+        fullDetails: "Crafted in Adobe Photoshop focusing on precision product isolation, glossy case reflections, high-contrast typography hierarchy ('Small earbuds. Big moments.'), and custom feature vector icons."
+      },
+      {
+        id: "p-diwali-mandala-blue",
+        title: "Shubh Deepawali — Royal Blue & Gold Festive Art",
+        category: "posters",
+        categoryLabel: "Posters & Key Visuals",
+        toolBadge: "Adobe PS & Ai",
+        badgeColor: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
+        description: "Royal blue traditional festive celebration artwork featuring hanging brass lanterns, intricate mandala rangoli art, vibrant diyas, and dual Hindi/English lettering.",
+        image: "Diwali-2026-Design.jpg",
+        fullDetails: "Created using Adobe Photoshop and Illustrator. Features a symmetrical floral mandala centerpiece, 3D hanging festive lanterns, layered firecracker elements, and gold foil-styled calligraphy."
+      },
+      {
+        id: "p-khushal-sky",
+        title: "Photoshop in 29 Mins — Masterclass Thumbnail",
+        category: "thumbnails",
+        categoryLabel: "YouTube Thumbnails",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-blue-500/20 text-blue-500 border-blue-500/30",
+        description: "Creative tutorial cover featuring 3D embossed Photoshop icon in hand, workspace UI backdrop, and floating currency particles.",
+        image: "Photoshop in 29 Minutes Thumbnail.jpg",
+        fullDetails: "Designed in Adobe Photoshop with perspective warp, realistic hand gripping shadow on 3D emblem, and dynamic UI blur."
+      },
+      {
+        id: "p-top5-ai",
+        title: "Top 5 AI Tools — High Impact Tech Thumbnail",
+        category: "thumbnails",
+        categoryLabel: "YouTube Thumbnails",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-emerald-500/20 text-emerald-500 border-emerald-500/30",
+        description: "Cash-stack foreground composite, glowing neon emerald lighting, 3D app icon floaters, and clean subject isolation.",
+        image: "Layer 11.jpg",
+        fullDetails: "Features Karan Rai in professional suit attire surrounded by dollar bills and glowing 3D AI brand assets. Color-graded for extreme clickability and eye-catchiness."
+      },
+      {
+        id: "p-dhruv-astra",
+        title: "ChatGPT Astra Exposed — Dhruv Rathee Style Thumbnail",
+        category: "thumbnails",
+        categoryLabel: "YouTube Thumbnails",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-rose-500/20 text-rose-500 border-rose-500/30",
+        description: "High-CTR YouTube thumbnail composite combining paper-tear transition, cybernetic AI robot artwork, and expressive facial lighting.",
+        image: "Dhruv Rathee style thumbnail -1.jpg",
+        fullDetails: "Crafted in Adobe Photoshop. Features rim lighting, ripped paper mask effect, high-contrast dark atmosphere, and bold sans-serif text designed to pop on mobile screens."
+      },
+      {
+        id: "p-dhruv-joshi",
+        title: "Pralhad Joshi Exposed — Dramatic Split Tear Thumbnail",
+        category: "thumbnails",
+        categoryLabel: "YouTube Thumbnails",
+        toolBadge: "Adobe PS",
+        badgeColor: "bg-rose-500/20 text-rose-500 border-rose-500/30",
+        description: "Journalistic investigative thumbnail with half-face monochrome tear, sinister red rim light, and background national building composite.",
+        image: "Dhruv Rathee style thumbnail -2.jpg",
+        fullDetails: "Advanced Photoshop manipulation utilizing layer masking, split-face exposure blending, blood-red mood tones, and high-frequency face sharpening."
+      },
       {
         id: "p-lg-desert",
         title: "LG Air Conditioner — Desert Penguin Creative Campaign",
@@ -739,6 +967,17 @@
         description: "Conceptual commercial advertisement featuring a sleeping penguin chilling in a scorching hot desert under an LG air conditioner at 16°C.",
         image: "ChatGPT Image Sep 20, 2026, 10_08_04 PM.jpg",
         fullDetails: "Advanced composite photo manipulation in Adobe Photoshop blending cold air stream effects, warm desert sunlight, custom shadows, and corporate brand layout."
+      },
+      {
+        id: "p-karan-rai-header",
+        title: "Karan Rai Graphic Designer — Personal Brand Header Banner",
+        category: "banners",
+        categoryLabel: "Commercial & Banners",
+        toolBadge: "Adobe PS & Ai",
+        badgeColor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+        description: "Futuristic neon-blue wide header banner showcasing personal branding, floating 3D Adobe PS and Ai icons, website link, and verified social contact tags.",
+        image: "YT banner.png",
+        fullDetails: "Designed in Adobe Photoshop and Illustrator with a cyberpunk neon gradient background, soft light leaks, subject portrait cut-out with blue rim light, and social handles."
       },
       {
         id: "p-bhagat-singh",
@@ -807,50 +1046,6 @@
         fullDetails: "Created in Adobe Photoshop with custom cylinder pedestal shadows, dynamic ambient spotlighting, and modern Apple e-commerce layout typography."
       },
       {
-        id: "p-dhruv-astra",
-        title: "ChatGPT Astra Exposed — Dhruv Rathee Style Thumbnail",
-        category: "thumbnails",
-        categoryLabel: "YouTube Thumbnails",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-rose-500/20 text-rose-500 border-rose-500/30",
-        description: "High-CTR YouTube thumbnail composite combining paper-tear transition, cybernetic AI robot artwork, and expressive facial lighting.",
-        image: "Dhruv Rathee style thumbnail -1.jpg",
-        fullDetails: "Crafted in Adobe Photoshop. Features rim lighting, ripped paper mask effect, high-contrast dark atmosphere, and bold sans-serif text designed to pop on mobile screens."
-      },
-      {
-        id: "p-dhruv-joshi",
-        title: "Pralhad Joshi Exposed — Dramatic Split Tear Thumbnail",
-        category: "thumbnails",
-        categoryLabel: "YouTube Thumbnails",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-rose-500/20 text-rose-500 border-rose-500/30",
-        description: "Journalistic investigative thumbnail with half-face monochrome tear, sinister red rim light, and background national building composite.",
-        image: "Dhruv Rathee style thumbnail -2.jpg",
-        fullDetails: "Advanced Photoshop manipulation utilizing layer masking, split-face exposure blending, blood-red mood tones, and high-frequency face sharpening."
-      },
-      {
-        id: "p-top5-ai",
-        title: "Top 5 AI Tools — High Impact Tech Thumbnail",
-        category: "thumbnails",
-        categoryLabel: "YouTube Thumbnails",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-emerald-500/20 text-emerald-500 border-emerald-500/30",
-        description: "Cash-stack foreground composite, glowing neon emerald lighting, 3D app icon floaters, and clean subject isolation.",
-        image: "Layer 11.jpg",
-        fullDetails: "Features Karan Rai in professional suit attire surrounded by dollar bills and glowing 3D AI brand assets. Color-graded for extreme clickability and eye-catchiness."
-      },
-      {
-        id: "p-khushal-sky",
-        title: "Photoshop in 29 Mins — Masterclass Thumbnail",
-        category: "thumbnails",
-        categoryLabel: "YouTube Thumbnails",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-blue-500/20 text-blue-500 border-blue-500/30",
-        description: "Creative tutorial cover featuring 3D embossed Photoshop icon in hand, workspace UI backdrop, and floating currency particles.",
-        image: "Photoshop in 29 Minutes Thumbnail.jpg",
-        fullDetails: "Designed in Adobe Photoshop with perspective warp, realistic hand gripping shadow on 3D emblem, and dynamic UI blur."
-      },
-      {
         id: "p-job-lakh",
         title: "Job ₹5 Lakh vs ₹50 Lakh — Finance YouTube Thumbnail",
         category: "thumbnails",
@@ -893,61 +1088,156 @@
         description: "Clean typography-driven automotive specification poster with typographic depth wall and shadow ground casting.",
         image: "MARUTI-SUZUKI--DZIRE-POSTER-Recovered-Recovered.jpg",
         fullDetails: "Crafted for automobile advertising with perspective background typographic walls, contact shadows under vehicle tires, and clear feature callouts."
+      }
+    ];
+
+    // =========================================================================
+    // 2. ALL 12 LOGOS BRAND IDENTITY PDFs (Complete Set of 12)
+    // =========================================================================
+    const brandIdentityPdfs = [
+      {
+        id: "brand-01",
+        file: "bakers-kitchen-01-brand-identity.pdf",
+        brand: "Bakers Kitchen",
+        concept: "Artisan Loaf",
+        sector: "Restaurant and Bakery",
+        slogan: "Tasty and Nutritious",
+        colors: ["#5A3529", "#BD6745", "#7E8A4A", "#F7E9CB"],
+        elements: ["Fresh loaf silhouette", "Wheat sprig", "Warm, natural palette"],
+        applications: ["Menu Cover", "Shop Sign", "Packaging Seal"],
+        idea: "A fresh loaf and wheat sprig make the bakery offer recognizable at a glance. The hand-drawn details soften the wordmark for menus and packaging."
       },
       {
-        id: "p-airpods-banner",
-        title: "Apple AirPods — 'Small earbuds. Big moments.' Ad Banner",
-        category: "banners",
-        categoryLabel: "Commercial & Banners",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-        description: "Minimalist Apple product vertical ad banner featuring 3D ambient shadow casting, warm gradient background curves, and clean feature icon callouts.",
-        image: "Earpods-ad-banner-Recovered.jpg",
-        fullDetails: "Crafted in Adobe Photoshop focusing on precision product isolation, glossy case reflections, high-contrast typography hierarchy ('Small earbuds. Big moments.'), and custom feature vector icons."
+        id: "brand-02",
+        file: "bakers-kitchen-02-brand-identity.pdf",
+        brand: "Bakers Kitchen",
+        concept: "Oven and Whisk",
+        sector: "Restaurant and Bakery",
+        slogan: "Tasty and Nutritious",
+        colors: ["#5A3529", "#BD6745", "#7E8A4A", "#F7E9CB"],
+        elements: ["Oven arch", "Whisk detail", "Simple counter mark"],
+        applications: ["Menu Cover", "Shop Sign", "Packaging Seal"],
+        idea: "A rounded oven arch holds the baking symbol, with whisk lines crossing the center. Simple enough for labels and bold enough for a shop sign."
       },
       {
-        id: "p-ps5-dualsense",
-        title: "Sony PlayStation 5 DualSense — Cosmic Red Ad Poster",
-        category: "banners",
-        categoryLabel: "Commercial & Banners",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-red-500/20 text-red-500 border-red-500/30",
-        description: "Striking crimson-toned promotional ad poster featuring the PS5 DualSense controller with bold typography and precision feature callouts.",
-        image: "PS-5_ad_poster.jpg",
-        fullDetails: "Created in Adobe Photoshop showcasing the Cosmic Red DualSense controller against dramatic studio lighting, sharp contact drop shadows, giant 'SONY' backdrop typography, and elegant feature lists (Adaptive Trigger, TouchPad, Motion Sensor, Matte Finish)."
+        id: "brand-03",
+        file: "firm-foundation-01-brand-identity.pdf",
+        brand: "Firm Foundation Ltd.",
+        concept: "Academic Shield",
+        sector: "College",
+        slogan: "Diligent and Learning",
+        colors: ["#174A9C", "#B82032", "#E5B543", "#FFFFFF"],
+        elements: ["Shield for a formal badge", "Pillars for the college", "Open book and motto"],
+        applications: ["Campus Sign", "Student Handbook", "College Profile"],
+        idea: "The shield frames the college identity. Pillars, a book and a restrained red edge combine academic tradition with a clear, modern school badge."
       },
       {
-        id: "p-karan-rai-header",
-        title: "Karan Rai Graphic Designer — Personal Brand Header Banner",
-        category: "banners",
-        categoryLabel: "Commercial & Banners",
-        toolBadge: "Adobe PS & Ai",
-        badgeColor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-        description: "Futuristic neon-blue wide header banner showcasing personal branding, floating 3D Adobe PS and Ai icons, website link, and verified social contact tags.",
-        image: "YT banner.png",
-        fullDetails: "Designed in Adobe Photoshop and Illustrator with a cyberpunk neon gradient background, soft light leaks, subject portrait cut-out with blue rim light, and social handles."
+        id: "brand-04",
+        file: "firm-foundation-02-brand-identity.pdf",
+        brand: "Firm Foundation Ltd.",
+        concept: "Torch Roundel",
+        sector: "College",
+        slogan: "Diligent and Learning",
+        colors: ["#174A9C", "#B82032", "#E5B543", "#FFFFFF"],
+        elements: ["Roundel for a formal seal", "Torch for guidance", "Open book for study"],
+        applications: ["Campus Sign", "Student Handbook", "College Profile"],
+        idea: "A circular seal makes the identity suitable for official college use. The torch and open book give the roundel a direct academic character."
       },
       {
-        id: "p-diwali-mandala-blue",
-        title: "Shubh Deepawali — Royal Blue & Gold Festive Art",
-        category: "posters",
-        categoryLabel: "Posters & Branding",
-        toolBadge: "Adobe PS & Ai",
-        badgeColor: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-        description: "Royal blue traditional festive celebration artwork featuring hanging brass lanterns, intricate mandala rangoli art, vibrant diyas, and dual Hindi/English lettering.",
-        image: "Diwali-2026-Design.jpg",
-        fullDetails: "Created using Adobe Photoshop and Illustrator. Features a symmetrical floral mandala centerpiece, 3D hanging festive lanterns, layered firecracker elements, and gold foil-styled calligraphy."
+        id: "brand-05",
+        file: "nexit-construction-01-brand-identity.pdf",
+        brand: "Nexit Construction Ltd.",
+        concept: "Structural N",
+        sector: "Civil Work, Building & Construction",
+        slogan: "Reliability and Excellence",
+        colors: ["#252525", "#D84135", "#EFEFEB", "#FFFFFF"],
+        elements: ["Structural beam geometry", "A red direction cue", "A stable baseline"],
+        applications: ["Site Board", "Vehicle Panel", "Hard Hat / Profile"],
+        idea: "Beam-like strokes build a strong N. Red angles add a sense of direction, and the grounded base gives the full lockup a stable finish."
       },
       {
-        id: "p-diwali-golden-portrait",
-        title: "Golden Diwali — 'Light and Strength' Festival Greeting",
-        category: "posters",
-        categoryLabel: "Posters & Branding",
-        toolBadge: "Adobe PS",
-        badgeColor: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-        description: "Warm festive portrait composition with ambient golden bokeh, glowing traditional diya clay lamps, lantern lighting, and elegant cursive festive typography.",
-        image: "Golden Diwali Light and Strength.png",
-        fullDetails: "Crafted in Adobe Photoshop featuring precise lighting match between subject portrait and glowing earthen diyas, golden particle overlays, cinematic depth-of-field bokeh, and golden metallic typography."
+        id: "brand-06",
+        file: "nexit-construction-02-brand-identity.pdf",
+        brand: "Nexit Construction Ltd.",
+        concept: "Rising Framework",
+        sector: "Civil Work, Building & Construction",
+        slogan: "Reliability and Excellence",
+        colors: ["#292929", "#D84639", "#F2F1ED", "#FFFFFF"],
+        elements: ["Clear building outline", "Raised red roofline", "Open, simple structure"],
+        applications: ["Site Board", "Vehicle Panel", "Hard Hat / Profile"],
+        idea: "A simplified building outline gives the mark an immediate construction cue. The red roofline lifts the structure and makes the silhouette easy to spot."
+      },
+      {
+        id: "brand-07",
+        file: "pamela-learning-centre-01-brand-identity.pdf",
+        brand: "Pamela Learning Centre",
+        concept: "Book and Key",
+        sector: "Adult Learning School",
+        slogan: "Education Is the Key",
+        colors: ["#14366E", "#154A9B", "#F0B52D", "#FFFFFF"],
+        elements: ["Open book for learning", "Key as a direct slogan link", "Blue, black and white core"],
+        applications: ["Course Cover", "Campus Sign", "Student Profile"],
+        idea: "An open book anchors the school identity. The key rises from its center and turns the supplied line, Education Is the Key, into a clear visual idea."
+      },
+      {
+        id: "brand-08",
+        file: "pamela-learning-centre-02-brand-identity.pdf",
+        brand: "Pamela Learning Centre",
+        concept: "Dawn and Open Book",
+        sector: "Adult Learning School",
+        slogan: "Education Is the Key",
+        colors: ["#153C7A", "#1554A3", "#E7A926", "#FFFFFF"],
+        elements: ["Open book foundation", "Graduation cap", "A rising arc of progress"],
+        applications: ["Course Cover", "Campus Sign", "Student Profile"],
+        idea: "The open book is paired with a graduation cap and a small rising arc. Together they suggest learning that continues into new opportunities."
+      },
+      {
+        id: "brand-09",
+        file: "young-stars-football-01-brand-identity.pdf",
+        brand: "Young Stars Football Club",
+        concept: "Star and Ball Crest",
+        sector: "Football Club",
+        slogan: "Since 1991",
+        colors: ["#101612", "#2E8B45", "#68C176", "#FFFFFF"],
+        elements: ["Star as the lead symbol", "Football at the center", "Crest for team identity"],
+        applications: ["Match Jersey", "Touchline Board", "Club Profile"],
+        idea: "A rising star sits above the football inside a strong crest. The shape is designed to hold together on a kit badge, banner or social profile."
+      },
+      {
+        id: "brand-10",
+        file: "young-stars-football-02-brand-identity.pdf",
+        brand: "Young Stars Football Club",
+        concept: "Y Monogram",
+        sector: "Football Club",
+        slogan: "Since 1991",
+        colors: ["#101612", "#2E8B45", "#68C176", "#FFFFFF"],
+        elements: ["Large Y monogram", "Star at the top", "Football and motion lines"],
+        applications: ["Match Jersey", "Touchline Board", "Club Profile"],
+        idea: "The heavy Y silhouette creates a compact club mark. A star, football and speed lines give it an energetic character for kit and supporter use."
+      },
+      {
+        id: "brand-11",
+        file: "zina-logistics-01-brand-identity.pdf",
+        brand: "Zina Logistics Ltd.",
+        concept: "Road in Motion",
+        sector: "Road Transportation Company",
+        slogan: "Road Transportation",
+        colors: ["#162B46", "#E3A02A", "#F4F6F8", "#FFFFFF"],
+        elements: ["Z-shaped road route", "Visible road markings", "Navy and amber contrast"],
+        applications: ["Fleet Graphics", "Shipment Label", "Dispatch Profile"],
+        idea: "A continuous route bends into a Z. The road markings make the service clear, while the navy and amber outline gives the mark presence on a moving vehicle."
+      },
+      {
+        id: "brand-12",
+        file: "zina-logistics-02-brand-identity.pdf",
+        brand: "Zina Logistics Ltd.",
+        concept: "Route Pin and Parcel",
+        sector: "Road Transportation Company",
+        slogan: "Road Transportation",
+        colors: ["#162B46", "#E3A02A", "#F4F6F8", "#FFFFFF"],
+        elements: ["Pin for destination", "Parcel at the center", "Route as a delivery cue"],
+        applications: ["Fleet Graphics", "Shipment Label", "Dispatch Profile"],
+        idea: "The location pin frames a parcel and route, bringing delivery and destination into one compact symbol. It scales naturally to shipment labels and digital tracking."
       }
     ];
 
@@ -1071,6 +1361,340 @@
       });
     });
 
+    // =========================================================================
+    // 3. 12 LOGOS BRAND IDENTITY PDF CAROUSEL ENGINE
+    // =========================================================================
+    let currentBrandIndex = 0;
+    let currentPdfSlide = 0;
+    let totalPdfSlides = 5;
+
+    const brandDeckStrip = document.getElementById('brandDeckStrip');
+    const activeBrandBadge = document.getElementById('activeBrandBadge');
+    const activeBrandTitle = document.getElementById('activeBrandTitle');
+    const activeBrandSub = document.getElementById('activeBrandSub');
+    const pdfLoadingState = document.getElementById('pdfLoadingState');
+    const pdfCarouselViewport = document.getElementById('pdfCarouselViewport');
+    const pdfCarouselTrack = document.getElementById('pdfCarouselTrack');
+    const pdfDotsContainer = document.getElementById('pdfDotsContainer');
+    const pdfPageIndicator = document.getElementById('pdfPageIndicator');
+    const overlayPrevBtn = document.getElementById('overlayPrevBtn');
+    const overlayNextBtn = document.getElementById('overlayNextBtn');
+
+    function renderBrandDeckStrip() {
+      brandDeckStrip.innerHTML = '';
+      brandIdentityPdfs.forEach((item, idx) => {
+        const isSelected = idx === currentBrandIndex;
+        const cardBtn = document.createElement('button');
+        cardBtn.type = "button";
+        cardBtn.className = isSelected
+          ? "snap-start flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl border-2 border-brand-accent bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-md transition-all"
+          : "snap-start flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-800/70 text-zinc-700 dark:text-zinc-300 hover:border-brand-accent transition-all";
+
+        cardBtn.innerHTML = `
+          <span class="w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold text-white shadow-sm" style="background:${item.colors[0]}">
+            ${String(idx + 1).padStart(2, '0')}
+          </span>
+          <div class="text-left">
+            <p class="font-display font-bold text-xs leading-tight">${item.brand}</p>
+            <p class="text-[10px] opacity-75 font-mono">${item.concept}</p>
+          </div>
+        `;
+        cardBtn.addEventListener('click', () => loadBrandIdentityPdf(idx));
+        brandDeckStrip.appendChild(cardBtn);
+      });
+    }
+
+    // Builds 5 high-resolution presentation slides if opened offline via file://
+    function buildNativeBrandSlides(item) {
+      const [cPrimary, cAccent, cSupport, cLight] = item.colors;
+      const slidesHtml = [
+        // SLIDE 01/05: COVER
+        `
+        <div class="w-full aspect-[16/10] max-h-[560px] rounded-2xl p-8 sm:p-14 flex flex-col justify-between relative overflow-hidden shadow-xl border border-zinc-200 dark:border-zinc-700" style="background:${cPrimary}; color:#FFFFFF;">
+          <div class="flex items-center justify-between text-[11px] font-mono tracking-widest uppercase opacity-80">
+            <span>BRAND IDENTITY SYSTEM</span>
+            <span>CLIENT PRESENTATION / PORTFOLIO CONCEPT</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center my-auto py-6">
+            <div class="md:col-span-7 space-y-4">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider" style="background:${cAccent}; color:#fff;">${item.sector}</span>
+              <h4 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight">${item.brand}</h4>
+              <p class="text-lg sm:text-2xl font-light opacity-90">${item.concept}</p>
+              <p class="text-xs font-mono uppercase tracking-widest opacity-75 pt-2">"${item.slogan}"</p>
+            </div>
+            <div class="md:col-span-5 flex justify-center">
+              <div class="w-44 h-44 sm:w-52 sm:h-52 rounded-3xl flex flex-col items-center justify-center p-6 text-center shadow-2xl border-4" style="background:${cLight}; color:${cPrimary}; border-color:${cAccent};">
+                <span class="font-display font-black text-4xl sm:text-5xl tracking-tight">${item.brand.split(' ').map(w => w[0]).join('').slice(0, 2)}</span>
+                <span class="font-display font-bold text-xs uppercase tracking-widest mt-3">${item.brand}</span>
+                <span class="text-[9px] font-mono uppercase mt-1" style="color:${cAccent};">${item.slogan}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono opacity-75 border-t border-white/15 pt-4">
+            <span>${item.brand} / ${item.concept}</span>
+            <span>01/05</span>
+          </div>
+        </div>
+        `,
+        // SLIDE 02/05: 01 / LOGO SYSTEM
+        `
+        <div class="w-full aspect-[16/10] max-h-[560px] rounded-2xl p-8 sm:p-12 flex flex-col justify-between bg-white text-zinc-900 shadow-xl border border-zinc-200">
+          <div class="flex items-center justify-between border-b border-zinc-200 pb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-widest font-bold" style="color:${cAccent}">01 / LOGO SYSTEM</span>
+              <h4 class="font-display font-bold text-xl sm:text-2xl">The mark &amp; full lockup</h4>
+            </div>
+            <span class="text-xs font-mono text-zinc-400">02/05</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 my-auto py-4 items-center">
+            <div class="md:col-span-7 p-8 rounded-2xl flex items-center justify-center gap-5 border border-zinc-200" style="background:${cLight};">
+              <div class="w-20 h-20 rounded-2xl flex items-center justify-center font-display font-black text-3xl text-white flex-shrink-0 shadow-md" style="background:${cPrimary}; border:3px solid ${cAccent};">
+                ${item.brand.split(' ').map(w => w[0]).join('').slice(0, 2)}
+              </div>
+              <div>
+                <p class="font-display font-extrabold text-2xl leading-none" style="color:${cPrimary}">${item.brand}</p>
+                <p class="text-xs font-mono uppercase tracking-widest mt-1" style="color:${cAccent}">${item.sector}</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-zinc-600 mt-2">${item.slogan}</p>
+              </div>
+            </div>
+            <div class="md:col-span-5 space-y-3">
+              <p class="text-xs font-bold uppercase tracking-wider text-zinc-400">Design Idea</p>
+              <p class="text-xs sm:text-sm text-zinc-700 leading-relaxed">${item.idea}</p>
+              <div class="pt-2 space-y-1.5">
+                <p class="text-xs font-bold uppercase tracking-wider text-zinc-400">Key Elements</p>
+                ${item.elements.map(el => `<p class="text-xs font-medium text-zinc-800 flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background:${cAccent}"></span>${el}</p>`).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-zinc-200 pt-3">
+            <span>${item.brand} / ${item.concept}</span>
+            <span>FULL LOCKUP &amp; EMBLEM</span>
+          </div>
+        </div>
+        `,
+        // SLIDE 03/05: 02 / COLOR SYSTEM
+        `
+        <div class="w-full aspect-[16/10] max-h-[560px] rounded-2xl p-8 sm:p-12 flex flex-col justify-between bg-white text-zinc-900 shadow-xl border border-zinc-200">
+          <div class="flex items-center justify-between border-b border-zinc-200 pb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-widest font-bold" style="color:${cAccent}">02 / COLOR SYSTEM</span>
+              <h4 class="font-display font-bold text-xl sm:text-2xl">Color palette &amp; balance</h4>
+            </div>
+            <span class="text-xs font-mono text-zinc-400">03/05</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-auto py-4">
+            <div class="rounded-2xl p-4 border border-zinc-200 flex flex-col justify-between h-44" style="background:${cPrimary}; color:#fff;">
+              <span class="text-[10px] font-mono uppercase opacity-80">PRIMARY (55%)</span>
+              <div>
+                <p class="font-mono font-bold text-lg">${cPrimary}</p>
+                <p class="text-[10px] opacity-80 mt-1">Main brand field &amp; strong text</p>
+              </div>
+            </div>
+            <div class="rounded-2xl p-4 border border-zinc-200 flex flex-col justify-between h-44" style="background:${cAccent}; color:#fff;">
+              <span class="text-[10px] font-mono uppercase opacity-80">ACCENT (25%)</span>
+              <div>
+                <p class="font-mono font-bold text-lg">${cAccent}</p>
+                <p class="text-[10px] opacity-80 mt-1">Key details, dividers &amp; highlights</p>
+              </div>
+            </div>
+            <div class="rounded-2xl p-4 border border-zinc-200 flex flex-col justify-between h-44" style="background:${cSupport}; color:#111;">
+              <span class="text-[10px] font-mono uppercase opacity-80">SUPPORT (20%)</span>
+              <div>
+                <p class="font-mono font-bold text-lg">${cSupport}</p>
+                <p class="text-[10px] opacity-80 mt-1">Secondary emphasis &amp; surfaces</p>
+              </div>
+            </div>
+            <div class="rounded-2xl p-4 border border-zinc-300 flex flex-col justify-between h-44" style="background:${cLight}; color:#111;">
+              <span class="text-[10px] font-mono uppercase opacity-75">LIGHT FIELD</span>
+              <div>
+                <p class="font-mono font-bold text-lg">${cLight}</p>
+                <p class="text-[10px] opacity-75 mt-1">Background for maximum clarity</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-zinc-200 pt-3">
+            <span>${item.brand} / ${item.concept}</span>
+            <span>RECOMMENDED BALANCE: 55% / 25% / 20%</span>
+          </div>
+        </div>
+        `,
+        // SLIDE 04/05: 03 / TYPOGRAPHY AND SPACING
+        `
+        <div class="w-full aspect-[16/10] max-h-[560px] rounded-2xl p-8 sm:p-12 flex flex-col justify-between bg-white text-zinc-900 shadow-xl border border-zinc-200">
+          <div class="flex items-center justify-between border-b border-zinc-200 pb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-widest font-bold" style="color:${cAccent}">03 / TYPOGRAPHY AND SPACING</span>
+              <h4 class="font-display font-bold text-xl sm:text-2xl">Type hierarchy &amp; clear space</h4>
+            </div>
+            <span class="text-xs font-mono text-zinc-400">04/05</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto py-4 items-center">
+            <div class="p-6 rounded-2xl border-2 border-dashed flex items-center justify-center relative" style="border-color:${cAccent}; background:${cLight}40;">
+              <span class="absolute top-2 left-3 font-mono text-xs font-bold" style="color:${cAccent}">X</span>
+              <span class="absolute bottom-2 right-3 font-mono text-xs font-bold" style="color:${cAccent}">X</span>
+              <div class="text-center space-y-1 py-4">
+                <p class="font-display font-extrabold text-2xl" style="color:${cPrimary}">${item.brand}</p>
+                <p class="text-xs font-mono uppercase tracking-widest" style="color:${cAccent}">${item.sector}</p>
+                <p class="text-[10px] font-mono uppercase text-zinc-500 pt-1">${item.slogan}</p>
+              </div>
+            </div>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200">
+                <p class="font-mono text-[10px] uppercase text-zinc-400">DISPLAY &amp; SUPPORTING LINE</p>
+                <p class="font-display font-bold text-lg mt-0.5" style="color:${cPrimary}">${item.brand}</p>
+                <p class="text-zinc-600 mt-1">Keep at least one emblem-width (1X) of clear space around the lockup.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200">
+                <p class="font-mono text-[10px] uppercase text-zinc-400">MINIMUM SIZE</p>
+                <p class="font-semibold text-zinc-800 mt-1">Full lockup: 28 mm wide / Emblem: 12 mm high</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-zinc-200 pt-3">
+            <span>${item.brand} / ${item.concept}</span>
+            <span>CLEAR SPACE &amp; MINIMUM SCALE</span>
+          </div>
+        </div>
+        `,
+        // SLIDE 05/05: 04 / APPLICATION SYSTEM
+        `
+        <div class="w-full aspect-[16/10] max-h-[560px] rounded-2xl p-8 sm:p-12 flex flex-col justify-between bg-white text-zinc-900 shadow-xl border border-zinc-200">
+          <div class="flex items-center justify-between border-b border-zinc-200 pb-4">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-widest font-bold" style="color:${cAccent}">04 / APPLICATION SYSTEM</span>
+              <h4 class="font-display font-bold text-xl sm:text-2xl">Real-world brand placements</h4>
+            </div>
+            <span class="text-xs font-mono text-zinc-400">05/05</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-auto py-4">
+            ${item.applications.map((app, i) => `
+              <div class="rounded-2xl p-5 border border-zinc-200 flex flex-col justify-between h-44" style="background:${i === 2 ? cSupport : cLight}45;">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider" style="color:${cAccent}">${app}</span>
+                <div class="my-auto flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full flex items-center justify-center font-display font-bold text-sm text-white shadow" style="background:${cPrimary}; border:2px solid ${cAccent}">
+                    ${item.brand.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                  </div>
+                  <div>
+                    <p class="font-display font-bold text-sm leading-tight" style="color:${cPrimary}">${item.brand}</p>
+                    <p class="text-[9px] font-mono uppercase text-zinc-500">${item.slogan}</p>
+                  </div>
+                </div>
+                <p class="text-[10px] text-zinc-500">${i === 0 ? 'Primary full lockup for distance legibility.' : i === 1 ? 'Secondary service line hierarchy.' : 'Compact emblem seal for limited space.'}</p>
+              </div>
+            `).join('')}
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-zinc-200 pt-3">
+            <span>${item.brand} / ${item.concept}</span>
+            <span>05/05</span>
+          </div>
+        </div>
+        `
+      ];
+      return slidesHtml;
+    }
+
+    function goToPdfSlide(index) {
+      if (totalPdfSlides === 0) return;
+
+      // Seamless next/prev across the 12 Brand Identity PDFs
+      if (index >= totalPdfSlides) {
+        const nextBrand = (currentBrandIndex + 1) % brandIdentityPdfs.length;
+        loadBrandIdentityPdf(nextBrand, 0);
+        return;
+      }
+      if (index < 0) {
+        const prevBrand = (currentBrandIndex - 1 + brandIdentityPdfs.length) % brandIdentityPdfs.length;
+        loadBrandIdentityPdf(prevBrand, 4);
+        return;
+      }
+
+      currentPdfSlide = index;
+      pdfCarouselTrack.style.transform = `translateX(-${currentPdfSlide * 100}%)`;
+      pdfPageIndicator.textContent = `Slide ${String(currentPdfSlide + 1).padStart(2, '0')} / ${String(totalPdfSlides).padStart(2, '0')}`;
+
+      const dots = pdfDotsContainer.querySelectorAll('.pdf-dot');
+      dots.forEach((dot, idx) => {
+        dot.className = idx === currentPdfSlide
+          ? "pdf-dot h-2.5 w-8 rounded-full bg-brand-accent transition-all duration-300"
+          : "pdf-dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 transition-all duration-300";
+      });
+    }
+
+    async function loadBrandIdentityPdf(brandIdx, startSlide = 0) {
+      currentBrandIndex = brandIdx;
+      const item = brandIdentityPdfs[brandIdx];
+
+      renderBrandDeckStrip();
+      activeBrandBadge.textContent = `Logo ${String(brandIdx + 1).padStart(2, '0')} / ${String(brandIdentityPdfs.length).padStart(2, '0')}`;
+      activeBrandTitle.textContent = `${item.brand} — ${item.concept}`;
+      activeBrandSub.textContent = `• ${item.sector}`;
+
+      pdfLoadingState.classList.remove('hidden');
+      pdfCarouselViewport.classList.add('hidden');
+      pdfCarouselTrack.innerHTML = '';
+      pdfDotsContainer.innerHTML = '';
+
+      try {
+        if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js not available');
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const loadingTask = pdfjsLib.getDocument(encodeURI(item.file));
+        const pdf = await loadingTask.promise;
+        totalPdfSlides = pdf.numPages;
+
+        for (let pageNum = 1; pageNum <= totalPdfSlides; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          const viewport = page.getViewport({ scale: 1.7 });
+
+          const slideWrapper = document.createElement('div');
+          slideWrapper.className = "w-full flex-shrink-0 flex items-center justify-center p-4 sm:p-8";
+
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          canvas.className = "max-h-[560px] w-auto max-w-full rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-700 bg-white";
+
+          await page.render({ canvasContext: context, viewport: viewport }).promise;
+          slideWrapper.appendChild(canvas);
+          pdfCarouselTrack.appendChild(slideWrapper);
+
+          const dot = document.createElement('button');
+          dot.type = "button";
+          dot.setAttribute('aria-label', `Slide ${pageNum}`);
+          dot.className = "pdf-dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700 transition-all duration-300";
+          dot.addEventListener('click', () => goToPdfSlide(pageNum - 1));
+          pdfDotsContainer.appendChild(dot);
+        }
+      } catch (err) {
+        // Automatic 5-slide vector presentation render if PDF is opened via local file://
+        const nativeSlides = buildNativeBrandSlides(item);
+        totalPdfSlides = nativeSlides.length;
+
+        nativeSlides.forEach((slideMarkup, sIdx) => {
+          const slideWrapper = document.createElement('div');
+          slideWrapper.className = "w-full flex-shrink-0 flex items-center justify-center p-4 sm:p-8";
+          slideWrapper.innerHTML = slideMarkup;
+          pdfCarouselTrack.appendChild(slideWrapper);
+
+          const dot = document.createElement('button');
+          dot.type = "button";
+          dot.setAttribute('aria-label', `Slide ${sIdx + 1}`);
+          dot.className = "pdf-dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700 transition-all duration-300";
+          dot.addEventListener('click', () => goToPdfSlide(sIdx));
+          pdfDotsContainer.appendChild(dot);
+        });
+      }
+
+      pdfLoadingState.classList.add('hidden');
+      pdfCarouselViewport.classList.remove('hidden');
+      goToPdfSlide(startSlide);
+      lucide.createIcons();
+    }
+
+    overlayPrevBtn.addEventListener('click', () => goToPdfSlide(currentPdfSlide - 1));
+    overlayNextBtn.addEventListener('click', () => goToPdfSlide(currentPdfSlide + 1));
+
     // Light / Dark Mode Toggle
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const moonIcon = document.getElementById('moonIcon');
@@ -1172,11 +1796,9 @@
           formSuccessMessage.classList.remove('hidden');
           contactForm.reset();
         } else {
-          // Fallback direct mailto if form service is blocked
           window.location.href = `mailto:krb.creativewave@gmail.com?subject=Design Inquiry: ${encodeURIComponent(formData.get('service'))}&body=From: ${encodeURIComponent(formData.get('name'))} (${encodeURIComponent(formData.get('email'))})%0D%0A%0D%0A${encodeURIComponent(formData.get('message'))}`;
         }
       } catch (err) {
-        // Safe offline/local fallback: opens email client directly
         window.location.href = `mailto:krb.creativewave@gmail.com?subject=Design Inquiry: ${encodeURIComponent(formData.get('service'))}&body=From: ${encodeURIComponent(formData.get('name'))} (${encodeURIComponent(formData.get('email'))})%0D%0A%0D%0A${encodeURIComponent(formData.get('message'))}`;
       } finally {
         submitBtn.disabled = false;
@@ -1190,6 +1812,7 @@
     // Initial run
     window.addEventListener('DOMContentLoaded', () => {
       renderProjects('all');
+      loadBrandIdentityPdf(0);
       lucide.createIcons();
     });
   </script>
